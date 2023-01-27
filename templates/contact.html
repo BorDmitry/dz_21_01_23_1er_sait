@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+
+{% for cat, msg in get_flashed_messages(True) %}
+    <div class="flash {{ cat }}">{{ msg }}</div>
+{% endfor %}
+
+<form action="/contact" method="POST" class="form-contact">
+    <p>Имя: <input type="text" name="username" required></p>
+    <p>Email: <input type="text" name="email" required></p>
+    <p><textarea name="message" cols="40" rows="7"></textarea></p>
+    <p><input type="submit" value="Отправить сообщение"></p>
+</form>
+<!-- # обращение к ключу, как в context-->
+{% if username and email %}
+<p>Имя пользователя: {{ username }}</p>
+<p>Email: {{ email }}</p>
+<p>Сообщение: {{ message }}</p>
+{% endif %}
+{% endblock %}
