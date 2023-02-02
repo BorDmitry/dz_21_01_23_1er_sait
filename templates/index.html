@@ -6,10 +6,16 @@
 
 {% block content %}
 {{ super() }}
-<h2>Автосасоны / Частные объявления</h2>
-<p>> ПОИСК АВТО</p>
-<h2>Автосалоны и официальные дилеры</h2>
-<h3>Новости партнёров</h3>
-<h3>Сколько стоит ваш автомобиль</h3>
-<h3>Регионы</h3>
+<hr>
+<h2>Список статей</h2>
+<ul>
+    {% for p in posts %}
+    <li>
+        <p class="title">
+            <a href="{{ url_for('show_post', alias=p.url) }}">{{p.title}}</a>
+        </p>
+        <div class="annonce">{{p.text[:250]}}...</div>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
